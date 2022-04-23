@@ -5,9 +5,9 @@ Project was setup from this documentation
 
 # Server Side
 In the project directory i.e. fisk-serve, you can run:
-
+### `npm install`
+then to start the backend application
 ### `npm start`
 
 # Client Side
 Please find the details under client/README.md
-

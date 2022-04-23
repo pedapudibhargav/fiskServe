@@ -2,9 +2,18 @@ import mongoose from 'mongoose';
 
 const dishSchema = mongoose.Schema({
     title: String,
-    ingredients: [String],
-    nutrition:[Object],
-    allergenInformation:[Object],
+    ingredients: {
+        type: [String],
+        default: []
+    },
+    nutrition: {
+        type: [Object],
+        default: []
+    },
+    allergenInformation: {
+        type: [Object],
+        default: []
+    },
     totalLikes: {
         type: Number,
         default: 0
@@ -15,5 +24,5 @@ const dishSchema = mongoose.Schema({
     }
 });
 
-const DishModel= mongoose.model('DishModel',dishSchema);
+const DishModel = mongoose.model('DishModel', dishSchema);
 export default DishModel;
