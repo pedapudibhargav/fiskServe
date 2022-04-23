@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const dishSchema = mongoose.Schema({
-    title: String,
+    name: String,
     ingredients: {
         type: [String],
         default: []
