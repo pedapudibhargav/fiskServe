@@ -1,9 +1,9 @@
 const dishesReducer = (stateDishes = [], action) => {
     switch(action.type) {
         case 'FETCH_ALL':
-            return stateDishes;
+            return action.payload;
         case 'CREATE':
-            return stateDishes;
+            return [...stateDishes, action.payload ];
         default:
             return stateDishes;
     }

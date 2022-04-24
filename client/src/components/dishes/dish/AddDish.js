@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import "./AddDish.css";
 import { makeStyles, CssBaseline, Box, TextField, Button, Container, Grid, Avatar, Typography } from "@material-ui/core";
 import { Fastfood } from '@material-ui/icons';
+import FileBase from 'react-file-base64';
+import { useDispatch } from "react-redux";
+import { createDish } from "../../../actions/dishes.actions"; 
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -23,27 +26,24 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const FIELD_NAMES = {
-    NAME: "name",
-    INGRADIANTS: "ingradiants",
-};
-
 function AddDish() {
     const classes = useStyles();
-
+    const dispatch = useDispatch();
+    const [dishData, setDishData] = useState(
+        {
+            dishName: '',
+            ingradiants: '',
+            image: ''
+        }
+    );    
     /**
      * Handle create new dish add form submission
      * @param {*} event 
      */
     function handleSubmit(event) {
         event.preventDefault();
-        const fieldNames = Object.keys(FIELD_NAMES);
-        fieldNames.forEach((fieldKey) => {
-            const fieldName = FIELD_NAMES[fieldKey];
-            const inputField = event.target.querySelector(`input[name="${fieldName}"]`);
-            const fieldValue = typeof (inputField) != 'undefined' ? inputField.value : "";
-            console.log(`${fieldName}=${fieldValue}`);
-        });
+        console.log(dishData);
+        dispatch(createDish(dishData));
         // console.log('Received Data for submit:', event.target.elements);
     }
 
@@ -61,7 +61,7 @@ function AddDish() {
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <TextField
-                                name={FIELD_NAMES.NAME}
+                                name="dishName"
                                 variant="outlined"
                                 required
                                 fullWidth
@@ -69,6 +69,10 @@ function AddDish() {
                                 label="Dish Name"
                                 autoFocus
                                 autoComplete="off"
+                                value={dishData.dishName}
+                                onChange={(e) => setDishData({
+                                    ...dishData, dishName: e.target.value
+                                })}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -78,40 +82,35 @@ function AddDish() {
                                 fullWidth
                                 id="ingradiants"
                                 label="Ingredients"
-                                name={FIELD_NAMES.INGRADIANTS}
+                                name="ingradiants"
                                 placeholder="salt,eggs,sugar"
                                 autoComplete="off"
+                                value={dishData.ingradiants}
+                                onChange={(e) => setDishData({
+                                    ...dishData, ingradiants: e.target.value
+                                })}
                             />
                         </Grid>
-                        {/* <Grid item xs={12}>
-                            <TextField
-                                variant="outlined"
-                                required
-                                fullWidth
-                                name="password"
-                                label="Password"
-                                type="password"
-                                id="password"
-                                autoComplete="current-password"
-                            />
-                        </Grid> */}
+                        <Grid item xs={12}>
+                            <div>
+                                <FileBase
+                                    type="file"
+                                    multiple={false}
+                                    onDone={({ base64 }) =>
+                                        setDishData({ ...dishData, image: base64 })}></FileBase>
+                            </div>
+                        </Grid>
                     </Grid>
                     <Button
                         type="submit"
                         fullWidth
                         variant="contained"
                         color="primary"
+                        size="large"
                         className={classes.submit}
                     >
                         Add
                     </Button>
-                    {/* <Grid container justifyContent="flex-end">
-                        <Grid item>
-                            <Link href="#" variant="body2">
-                                Already have an account? Sign in
-                            </Link>
-                        </Grid>
-                    </Grid> */}
                 </form>
             </div>
             <Box mt={5}>

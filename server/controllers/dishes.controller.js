@@ -11,9 +11,11 @@ export const getDishes = async (req, res) => {
 
 export const createDish = async (req, res) => {
     const dish = req.body
+    // console.log(JSON.stringify(dish));
     const newDish = new DishModel(dish);
+    console.log({newDish});
     try {
-        await newPost.save();
+        await newDish.save();
         res.status(201).json(dish);
     } catch (error) {
         res.status(409).json({message: error.message});

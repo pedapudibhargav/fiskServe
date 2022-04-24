@@ -1,10 +1,14 @@
 import mongoose from 'mongoose';
 
 const dishSchema = mongoose.Schema({
-    name: String,
+    dishName: String,
     ingredients: {
-        type: [String],
-        default: []
+        type: String,
+        default: ''
+    },
+    image:{
+        type: String,
+        default: ''
     },
     nutrition: {
         type: [Object],

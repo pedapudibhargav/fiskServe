@@ -8,14 +8,12 @@ import cors from 'cors';
 import dishesRouters from './routes/dishes.route.js'
 
 const app = express();
-
-app.use('/dishes',dishesRouters);
-
 const PORT = process.env.PORT || 3001;
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
+app.use('/dishes',dishesRouters);
 /**
  * create .env file at the project root folder
  * Details of what .env is: 
