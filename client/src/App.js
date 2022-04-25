@@ -5,7 +5,7 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link
+  // Link
 } from "react-router-dom";
 
 import "./App.css";
@@ -41,10 +41,8 @@ function App() {
         <Router>
           <MainAppBar />
           <section>
-            <p>App</p>
-
             <div>
-              <nav>
+              {/* <nav>
                 <ul>
                   <li>
                     <Link to="/">Home</Link>
@@ -56,7 +54,7 @@ function App() {
                     <Link to="/admin/menu/create">Create Menu</Link>
                   </li>
                 </ul>
-              </nav>
+              </nav> */}
               {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
               <Routes>
