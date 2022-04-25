@@ -11,11 +11,52 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import FoodMenu from '../menu/FoodMenu';
+import Dishes from '../dishes/Dishes';
+import CreateMenu from '../menu/createMenu/CreateMenu';
+import AddDish from '../dishes/dish/AddDish';
+import './MainAppBar.css';
+import {
+  // BrowserRouter as Router,
+  // Routes,
+  // Route,
+  Link
+} from "react-router-dom";
 
-const pages = ['Products', 'Pricing', 'Blog'];
+const pages = [
+  {
+    name: "Create Menu",
+    path: "/admin/menu/create",
+    exact: true,
+    element: <CreateMenu />
+  },
+  {
+    name: "Add Dish",
+    path: "/admin/dishes/create",
+    exact: true,
+    element: <AddDish />
+  },
+  {
+    name: "Menu",
+    path: "/menu",
+    exact: true,
+    element: <FoodMenu />
+  },
+  {
+    name: "Dishes",
+    path: "/dishes",
+    exact: true,
+    element: <Dishes />
+  },
+  {
+    name: "Home",
+    path: "/",
+    exact: false,
+    element: <FoodMenu />
+  }];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-const MainAppBar= () => {
+const MainAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -33,17 +74,17 @@ const MainAppBar= () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-/**
- * Pending items:
- * Add navigation items to 
- * Home => / => <Home>
- * Fisk Serve => /fisk-serve => <Home>
- * 
- * This should be a dropdown menu
- * Admin => /admin => <Home>
- *   - Create Menu => /menu/create => <Home>
- *      
- */
+  /**
+   * Pending items:
+   * Add navigation items to 
+   * Home => / => <Home>
+   * Fisk Serve => /fisk-serve => <Home>
+   * 
+   * This should be a dropdown menu
+   * Admin => /admin => <Home>
+   *   - Create Menu => /menu/create => <Home>
+   *      
+   */
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -87,8 +128,11 @@ const MainAppBar= () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem key={page.path} component={Link} to={page.path} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">
+                    {page.name}
+                    {/* <Link to={page.path}>{page.name}</Link> */}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -104,11 +148,11 @@ const MainAppBar= () => {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
-                key={page}
+                key={page.path}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                <Link to={page.path}>{page.name}</Link>
               </Button>
             ))}
           </Box>

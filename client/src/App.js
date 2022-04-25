@@ -14,12 +14,12 @@ import { getDishes } from './actions/dishes.actions.js'
 import MainAppBar from "./components/app-menu/MainAppBar";
 import Dishes from "./components/dishes/Dishes";
 import AddDish from "./components/dishes/dish/AddDish";
-import Menu from "./components/menu/Menu";
+import FoodMenu from "./components/menu/FoodMenu";
 import CreateMenu from "./components/menu/createMenu/CreateMenu";
 
 const darkTheme = createTheme({
   palette: {
-    mode: 'dark',
+    // mode: 'dark',
   },
 });
 function App() {
@@ -57,7 +57,6 @@ function App() {
                   </li>
                 </ul>
               </nav>
-
               {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
               <Routes>
@@ -67,9 +66,9 @@ function App() {
                 </Route>
                 <Route exact path="/dishes" element={<Dishes />}>
                 </Route>
-                <Route exact path="/menu" element={<Menu />}>
+                <Route exact path="/menu" element={<FoodMenu />}>
                 </Route>
-                <Route path="/" element={<Menu />}>
+                <Route path="/" element={<FoodMenu />}>
                 </Route>
               </Routes>
             </div>
