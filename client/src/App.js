@@ -40,9 +40,8 @@ function App() {
       <div className="App">
         <Router>
           <MainAppBar />
-          <section>
-            <div>
-              {/* <nav>
+          <>
+            {/* <nav>
                 <ul>
                   <li>
                     <Link to="/">Home</Link>
@@ -55,8 +54,9 @@ function App() {
                   </li>
                 </ul>
               </nav> */}
-              {/* A <Switch> looks through its children <Route>s and
+            {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
+            <main>
               <Routes>
                 <Route exact path="/admin/menu/create" element={<CreateMenu />}>
                 </Route>
@@ -69,8 +69,8 @@ function App() {
                 <Route path="/" element={<FoodMenu />}>
                 </Route>
               </Routes>
-            </div>
-          </section>
+            </main>
+          </>
         </Router>
       </div>
     </ThemeProvider>

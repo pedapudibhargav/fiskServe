@@ -2,6 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Tabs, { tabsClasses } from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import './SecondaryMenu.css'
 
 export default function ScrollableTabsButtonVisible() {
   const [value, setValue] = React.useState(0);
@@ -15,9 +16,11 @@ export default function ScrollableTabsButtonVisible() {
       sx={{
         flexGrow: 1,
         // maxWidth: { xs: 320, sm: 480 },
+        boxShadow: 3,
         bgcolor: 'background.paper',
       }}
       mb={2}
+      className={'menu-dateselection'}
     >
       <Tabs
         value={value}

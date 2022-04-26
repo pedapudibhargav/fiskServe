@@ -9,14 +9,16 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
 import SecondaryMenu from './../app-menu/SecondaryMenu';
+import MealsMenu from "./../app-menu/MealsMenu";
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const FoodMenu = () => {
     return (
         <>
+            <SecondaryMenu />
+            <MealsMenu />
             <Container
                 maxWidth="lg">
-                <SecondaryMenu />
                 <Grid container spacing={4}>
                     {cards.map((card) => (
                         <Grid item key={card} xs={12} sm={6} md={4}>
