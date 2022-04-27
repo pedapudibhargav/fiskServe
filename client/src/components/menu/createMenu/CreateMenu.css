@@ -1,0 +1,6 @@
+.add-to-menu-select {
+    width: 100%;
+}
+.currentMenuItem + .currentMenuItem{
+    padding-top: 15px;
+}

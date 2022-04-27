@@ -32,20 +32,21 @@ export const createDish = async (req, res) => {
  */
 export const getMasterDishes = async (req, res) => {
     try {
-        console.log("received the req 2");
-        // const dishes = await DishModel.find();
-
-        const url = 'https://tasty.p.rapidapi.com/recipes/list';
+        let queryStr = req.query.q?decodeURI(req.query.q):"";
+        const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+        const hasSpecialHars = specialChars.test(queryStr);
+        if(hasSpecialHars){
+            throw 'Nice try!';
+        }
+        queryStr = encodeURI(queryStr);
+        const url = `https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&q=${queryStr}`;
         const options = {
             method: 'GET',
-            qs: { from: '0', size: '20', q: 'chicken' },
             headers: {
                 'X-RapidAPI-Host': 'tasty.p.rapidapi.com',
                 'X-RapidAPI-Key': RAPID_KEY,
-                useQueryString: true
             }
         };
-
         const results = await fetch(url, options)
             .then(res => res.json());
         res.status(201).json(results);
