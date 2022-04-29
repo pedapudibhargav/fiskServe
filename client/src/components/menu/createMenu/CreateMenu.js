@@ -14,7 +14,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import SecondaryMenu from './../../app-menu/SecondaryMenu';
+import DatePickerMenu from '../../app-menu/DatePickerMenu';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
@@ -165,6 +165,10 @@ const CreateMenu = () => {
             <SearchIcon />
         </IconButton>
     )
+
+    const handleDateChange = (event) => {
+        console.log('From parent:'+event.target.value);
+    }
     return (
         <div style={{ padding: 20 }}>
             <Grid container>
@@ -234,7 +238,7 @@ const CreateMenu = () => {
                 </Grid>
                 <Grid item xs={6} sm={8} md={5} component={Paper} elevation={2} square>
                     <Box>
-                        <SecondaryMenu />
+                        <DatePickerMenu onDateChange={handleDateChange} />
                         <MealSection
                             title="Breakfast" mealTime="breakfast"
                             items={menuData.currentMenu["breakfast"]}

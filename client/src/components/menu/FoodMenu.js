@@ -8,29 +8,33 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
-import SecondaryMenu from './../app-menu/SecondaryMenu';
+import DatePickerMenu from '../app-menu/DatePickerMenu';
 import MealsMenu from "./../app-menu/MealsMenu";
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const handleDateChange = (event) => {
+    console.log('From parent:'+event.target.value);
+}
+
 const FoodMenu = () => {
     return (
         <>
-            <SecondaryMenu />
+            <DatePickerMenu  onDateChange={handleDateChange}/>
             <MealsMenu />
             <Container
                 maxWidth="lg">
                 <Grid container spacing={4}>
                     {cards.map((card) => (
-                        <Grid item key={card} xs={12} sm={6} md={4}>
+                        <Grid item key={card} xs={12} sm={4} md={3}>
                             <Card
                                 sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                             >
                                 <CardMedia
                                     component="img"
-                                    sx={{
-                                        // 16:9
-                                        pt: '56.25%',
-                                    }}
+                                    // sx={{
+                                    //     // 16:9
+                                    //     pt: '56.25%',
+                                    // }}
                                     image="https://source.unsplash.com/random"
                                     alt="random"
                                 />
