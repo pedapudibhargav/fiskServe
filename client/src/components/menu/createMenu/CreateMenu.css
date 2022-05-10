@@ -4,3 +4,7 @@
 .currentMenuItem + .currentMenuItem{
     padding-top: 15px;
 }
+.menu-save-row {
+    width: 100%;
+    text-align: center;
+}

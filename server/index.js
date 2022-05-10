@@ -15,13 +15,13 @@ app.use(cors());
 
 app.use('/dishes',dishesRouters);
 /**
- * create .env file at the project root folder
+ * create .env file at the project root folder and add below variable
+ * CONNECTION_URL = `mongodb+srv://{add_user_name}:{add_db_pass}@cluster0.egxjs.mongodb.net/{collection_name}?retryWrites=true&w=majority`
  * Details of what .env is: 
  * https://www.youtube.com/watch?v=17UVejOw3zA&ab_channel=TheCodingTrain
  * Details:https://www.npmjs.com/package/dotenv
  */
-const CONNECTION_URL = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASS}@cluster0.egxjs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
-
+const CONNECTION_URL = process.env.CONNECTION_URL;
 //connect to https://cloud.mongodb.com/
 mongoose.connect(CONNECTION_URL)
   .then(() => { app.listen(PORT, ()=> console.log(`Server running on port: ${PORT}`)) })

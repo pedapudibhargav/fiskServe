@@ -7,7 +7,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import TextField from '@material-ui/core/TextField';
 import { BE_URL } from '../../../api';
 import axios from 'axios';
-// import Button from '@mui/material/Button';
+import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -144,9 +144,9 @@ const CreateMenu = () => {
                 ...menuData,
                 currentMenu: tmpMenu
             });
-        }else {
+        } else {
             alert("Item Already exists in the menu");
-        }    
+        }
     }
 
     const handleMenuItemDeletion = (mealTime, index) => {
@@ -166,8 +166,8 @@ const CreateMenu = () => {
         </IconButton>
     )
 
-    const handleDateChange = (event) => {
-        console.log('From parent:'+event.target.value);
+    const handleDateChange = (event, newValue) => {
+        console.log(`From parent:${newValue}`,event.target);
     }
     return (
         <div style={{ padding: 20 }}>
@@ -239,6 +239,11 @@ const CreateMenu = () => {
                 <Grid item xs={6} sm={8} md={5} component={Paper} elevation={2} square>
                     <Box>
                         <DatePickerMenu onDateChange={handleDateChange} />
+                        <div className='menu-save-row'>
+                            <Button variant="contained" disableElevation>
+                                Save
+                            </Button>
+                        </div>
                         <MealSection
                             title="Breakfast" mealTime="breakfast"
                             items={menuData.currentMenu["breakfast"]}

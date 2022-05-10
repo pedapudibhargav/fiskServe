@@ -9,8 +9,7 @@ export default function DatePickerMenu(props) {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-    console.log('newValue:' + newValue);
-    props.onDateChange(event);
+    props.onDateChange(event,newValue);
   };
 
   Date.prototype.yyyymmdd = function () {
@@ -32,7 +31,6 @@ export default function DatePickerMenu(props) {
       let priorDate = new Date(new Date().setDate(today.getDate() + i));
       datesArr.push(priorDate.yyyymmdd());
     }
-    console.log(datesArr);
     return datesArr;
   })();
 
@@ -57,7 +55,7 @@ export default function DatePickerMenu(props) {
         }}
       >
         {dates.map((dateIn,index) => (
-          <Tab label={dateIn} key={dateIn} value={index} />
+          <Tab label={dateIn} key={dateIn} value={dateIn} />
         ))}
       </Tabs>
     </Box>
