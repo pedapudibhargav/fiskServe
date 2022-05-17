@@ -1,3 +1,8 @@
-.menu-dateselection {
-    /* margin-bottom: 4px; */
+.nav-date-day {
+    font-size: 1.5rem;
+}
+
+.nav-date-month-text,
+.nav-date-day-text {
+    font-size: 0.75rem;
 }

@@ -12,14 +12,14 @@ import DatePickerMenu from '../app-menu/DatePickerMenu';
 import MealsMenu from "./../app-menu/MealsMenu";
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-const handleDateChange = (event) => {
-    console.log('From parent:'+event.target.value);
+const handleDateChange = (event, dateIn) => {
+    console.log('From parent:' + dateIn);
 }
 
 const FoodMenu = () => {
     return (
         <>
-            <DatePickerMenu  onDateChange={handleDateChange}/>
+            <DatePickerMenu onDateChange={handleDateChange} />
             <MealsMenu />
             <Container
                 maxWidth="lg">
