@@ -31,7 +31,6 @@ export const updateMenu = async(req, res) => {
     const date = new Date(req.params);
     
     try {
-        
         const dishFound = isAlreadyInMenu(dish, date);
         if (dishFound){
             res.status(404).json({message: 'The dish is already in the menu for the day.'})

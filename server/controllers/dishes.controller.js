@@ -61,17 +61,10 @@ export const getMasterDishes = async (req, res) => {
 
 
 export const isAlreadyInDish = async (dish) => {
-    try {
-        const found = await DishModel.findOne({dishName: dish})
-        if(found) {
-            return true;
-        }else {
-            return false;
-        }
-    
-    } catch(error){
-        res.status(404).json({message: error.message})
+    const found = await DishModel.findOne({dishName: dish})
+    if(found) {
+        return true;
+    }else {
+        return false;
     }
-
-
 }
