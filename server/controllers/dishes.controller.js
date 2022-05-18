@@ -14,8 +14,12 @@ export const getDishes = async (req, res) => {
 }
 
 export const createDish = async (req, res) => {
-    const dish = req.body
+    const dish = req.body;
     // console.log(JSON.stringify(dish));
+    const dishFound = isAlreadyInDish(dish);
+    if (dishFound){
+        res.status(404).json({message: 'Dish Already Found in DB.'})
+    }
     const newDish = new DishModel(dish);
     console.log({ newDish });
     try {
@@ -53,4 +57,21 @@ export const getMasterDishes = async (req, res) => {
     } catch (error) {
         res.status(404).json({ message: error.message });
     }
+}
+
+
+export const isAlreadyInDish = async (dish) => {
+    try {
+        const found = await DishModel.findOne({dishName: dish})
+        if(found) {
+            return true;
+        }else {
+            return false;
+        }
+    
+    } catch(error){
+        res.status(404).json({message: error.message})
+    }
+
+
 }
